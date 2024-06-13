@@ -12,14 +12,19 @@ export const protectedRoutes = [
         component: lazy(()=>import('../../pages/Profile.jsx'))
     },
     {
-        title:"Blogs",
-        path:"/myBlogs",
-        component: lazy(()=>import('../../pages/PersonalBlogs.jsx'))
+        title:"Gallery",
+        path:"/gallery",
+        component: lazy(()=>import('../../pages/Gallery.jsx'))
     },
     {
         title:"Create Post",
         path:"/createPost",
         component: lazy(()=>import('../../pages/CreatePost.jsx'))
+    },
+    {
+        title:"Edit Post",
+        path:"/edit/:postId",
+        component: lazy(()=>import('../../pages/EditPost.jsx'))
     },
     {
         key: "services",

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import bgImg from '../image/bg.jpg';
+import Sidebar from "../components/templates/sidebar/Sidebar";
 
 const About = () => {
   const typedRef = useRef(null);

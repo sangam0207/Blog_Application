@@ -72,7 +72,7 @@ navigate('/blogs')
 
   return (
     <div className="p-2 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-12 font-semibold">Create a post</h1>
+      <h1 className="text-center text-3xl my-12 font-semibold">Edit this post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <input
@@ -130,7 +130,7 @@ navigate('/blogs')
           className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md"
           disabled={isLoading}
         >
-          {isLoading ? 'Publishing...' : 'Publish'}
+          {isLoading ? 'Updating...' : 'Save'}
         </button>
       </form>
     </div>

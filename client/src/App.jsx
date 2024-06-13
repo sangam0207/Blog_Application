@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar.jsx";
 import { lazy, Suspense } from "react";
 import { publicRoutes } from "./config/route-configs/public.routes";
 import { protectedRoutes } from "./config/route-configs/protected.routes";
+import AppLayout from "./components/layouts/AppLayout.jsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -17,6 +18,7 @@ const App = () => {
         <Navbar />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
+           
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blogs" element={<Blogs />} />
@@ -30,6 +32,7 @@ const App = () => {
               ))}
             </Route>
             <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout/>}>
               {protectedRoutes.map((route) => (
                 <Route
                   key={route.path}
@@ -37,6 +40,8 @@ const App = () => {
                   element={<route.component />}
                 />
               ))}
+              </Route>
+             
             </Route>
           </Routes>
         </Suspense>

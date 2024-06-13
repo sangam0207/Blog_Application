@@ -1,4 +1,3 @@
-import React from 'react';
 import { getPosts } from '../services/user.api';
 import useQuery from '../hooks/useQuery';
 

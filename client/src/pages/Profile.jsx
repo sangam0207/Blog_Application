@@ -1,11 +1,8 @@
 
-import AppLayout from "../components/layouts/AppLayout"
 
 const Profile = () => {
   return (
-    <div >
-pROFILE
-   </div>
+    <div className="text-center mt-16 text-3xl font-bold">Profile</div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 const useMutate = (apiFunction, { onSuccess, onError } = {}) => {
   const [data, setData] = useState(null);
@@ -20,8 +20,8 @@ const useMutate = (apiFunction, { onSuccess, onError } = {}) => {
       return res;
     } catch (error) {
       setIsError(true);
-      setError(error);
-      toast.error(error?.message || error?.response?.data?.message);
+      setError(error.message || "An error occurred");
+      toast.error(error?.message || "An error occurred");
       if (onError) {
         onError(error);
       }

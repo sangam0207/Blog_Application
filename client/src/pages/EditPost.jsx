@@ -3,24 +3,42 @@ import ReactQuill from "react-quill";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
 import useMutate from "../hooks/useMutation";
+import useQuery from "../hooks/useQuery";
 import { toast } from 'sonner';
 import { useApi } from "../services/post.api";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const CreatePost = () => {
   const [formData, setFormData] = useState({ title: "", content: "" });
   const [imageFile, setImageFile] = useState(null);
   const [uploadTracValue, setUploadTracValue] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
-const{createPost}=useApi()
+  const[isLoading,setIsLoading]=useState(false)
+  const {postId}=useParams()
+const{editPost}=useApi()
+const {getSinglePost}=useApi()
 const navigate=useNavigate()
-  const { mutate: createPostMutate, isLoading } = useMutate(createPost, {
-    onSuccess: (response) => {
+  const { mutate: editPostMutate } = useMutate(editPost, {
+    onSuccess: () => {
       toast.success("Post created successfully!");
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to create post");
+    }
+  });
+  const {data} = useQuery(() => getSinglePost(postId), {
+    onSuccess: (data) => {
+      console.log("data is ",data)
+      setFormData({
+        title: data.data.post.title,
+        content: data.data.post.content,
+      });
+      setImageFileUrl(data.data.post.image); 
+    },
+    onError: () => {
+      toast.error("Failed to fetch post data");
     }
   });
 
@@ -53,8 +71,8 @@ const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const postData = { ...formData, image: imageFileUrl };
-    createPostMutate(postData);
+    const postData={...formData,image:imageFileUrl,postId:postId}
+    editPostMutate(postData);
 navigate('/blogs')
   };
 

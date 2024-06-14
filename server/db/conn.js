@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-mongoose.connect('mongodb+srv://sangamequ:oKmv7v8Lj8Jko0im@blogtask.egjva4d.mongodb.net/Vdoit_BlogApplication')
+mongoose.connect('mongodb+srv://ss7618796:OslpyeEHUWbNrS8Z@cluster0.hxcr8ji.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/Vdoit_BlogApplication')
 .then(()=>{
     console.log('Database connected Successfully')
 })

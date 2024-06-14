@@ -60,6 +60,25 @@ const loginController = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+const refreshToken = async (req, res) => {
+  const cookies=req.cookies;
+  if(!cookies?.refreshToken){
+    return res.status(401).json({message:'Unauthorized'})
+  }
+  const refreshToken=cookies.refreshToken;
+  jwt.verify(
+    refreshToken,process.env.Refresh_Token_Secret,
+    async(err,decoded)=>{
+      if(err) return res.status(403).json({message:"Forbidden error"})
+      const existingUser=await User.findOne({_id:decoded.id})
+    if(!existingUser) return res.status(401).json({message:"Unauthorized"})
+    const newToken=jwt.sign(
+  {id:existingUser._id},process.env.Access_Token_Secret,{expiresIn:'1m'})
+  res.json({ accessToken:newToken,user:{name:existingUser.name,email:existingUser.email}})
+    })
+};
+
 const logoutController = async (req, res) => {
   try {
     res.clearCookie("refreshToken", {
@@ -74,4 +93,4 @@ const logoutController = async (req, res) => {
   }
 };
 
-module.exports = { registerController, loginController, logoutController };
+module.exports = { registerController, loginController,refreshToken, logoutController };

@@ -11,5 +11,6 @@ router.get("/test", (req, res) => {
 });
 router.post("/register", registerController);
 router.post("/login", loginController);
+
 router.get("/logout",isAuthorized,logoutController);
 module.exports = router;

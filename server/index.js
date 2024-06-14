@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://666c1b5a19c45a1b39933161--jocular-bunny-28dd07.netlify.app',
     credentials: true
   }));                            
 app.use(authRouter);

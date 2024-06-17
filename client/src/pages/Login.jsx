@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { setToken } = useAuth();
+    const { setToken,setUserInfo } = useAuth();
     const navigate = useNavigate();
 
     const { mutate: loginMutate, isLoading } = useMutate(login, {
@@ -17,6 +17,7 @@ const Login = () => {
             if (response.status === 200) {
                 console.log(response)
                 setToken(response.data.accessToken);
+                setUserInfo(res.data.user)
                 navigate('/profile');
             }
         },

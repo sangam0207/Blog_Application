@@ -31,8 +31,9 @@ const App = () => {
                 />
               ))}
             </Route>
+            <Route element={<AppLayout/>}>
             <Route element={<ProtectedRoute />}>
-              <Route element={<AppLayout/>}>
+            
               {protectedRoutes.map((route) => (
                 <Route
                   key={route.path}

@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
+    const [userInfo,setUserInfo]=useState(null)
      console.log(token)
     useEffect(() => {
         // refresh token
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
                 const res = await axiosPublic.get('/refresh');
                 const newToken = res.data.accessToken;
                 setToken(newToken);
+                setUserInfo(res.data.user)
             } catch (error) {
                 console.error('Error refreshing token:', error);
             }
@@ -21,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{token,setToken}}>
+        <AuthContext.Provider value={{token,setToken,userInfo,setUserInfo}}>
             {children}
         </AuthContext.Provider>
     );

@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://666c1da07ab3241f98de87dd--creative-gecko-5c1f76.netlify.app',
+    origin: 'http://localhost:5173',
     credentials: true
   }));                            
 app.use(authRouter);

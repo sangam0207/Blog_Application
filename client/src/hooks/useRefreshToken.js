@@ -3,13 +3,12 @@ import { useAuth } from '../context/authContext';
 const useRefreshToken=()=>{
   const{setToken}=useAuth()
   const refresh=async()=>{
-    const response=await axiosPublic.get('/refresh-token',{
+    const response=await axiosPublic.get('/refresh',{
         withCredentials:true
     });
-    setToken(response.data.token);
-
-return response.data.token;
+    setToken(response.data.accessToken);
+return response.data.accessToken;
   }  
   return refresh;
 }
-export default useRefreshToken
+export default useRefreshToken;

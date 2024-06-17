@@ -13,5 +13,5 @@ router.get("/test", (req, res) => {
 router.post("/register", registerController);
 router.post("/login", loginController);
 router.get("/refresh",refreshToken);
-router.get("/logout",isAuthorized,logoutController);
+router.get("/logout",logoutController);
 module.exports = router;

@@ -54,7 +54,7 @@ const loginController = async (req, res) => {
         sameSite: "None",
         maxAge: 2 * 24 * 60 * 60 * 1000,
       })
-      .json({ status: 200, user, accessToken: token });
+      .json({ status: 200,user, accessToken: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

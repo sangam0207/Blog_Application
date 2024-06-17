@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
      console.log(token)
     useEffect(() => {
+        // refresh token
         const refreshToken = async () => {
             try {
                 const res = await axiosPublic.get('/refresh');

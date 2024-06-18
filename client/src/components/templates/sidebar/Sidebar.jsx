@@ -7,17 +7,17 @@ import { axiosPublic } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
 const SidebarContainer = styled.div`
-  position: fixed; 
+  position: fixed;
   top: 65px;
   left: 0;
-  width: 250px; 
+  width: 250px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f8f9fa; 
-  z-index: 1000; 
-  overflow-y: auto; 
+  background-color: #f8f9fa;
+  z-index: 1000;
+  overflow-y: auto;
 `;
 
 const NavItem = styled.div`
@@ -50,18 +50,18 @@ const Label = styled.span`
 `;
 
 const Sidebar = () => {
-  const{setToken}=useAuth()
-  const navigate=useNavigate()
-  const handleClick=async()=>{
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
+  const handleClick = async () => {
     try {
-          const res=await axiosPublic.get('/logout');
-          setToken(null)
-           navigate('/login');
-     console.log(res.data)
+      const res = await axiosPublic.get("/logout");
+      setToken(null);
+      navigate("/login");
+      console.log(res.data);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
   return (
     <SidebarContainer>
       {navItems.map((item) => (
@@ -73,10 +73,11 @@ const Sidebar = () => {
         </NavLink>
       ))}
       <button className="flex gap-2 relative " onClick={handleClick}>
-      <IoLogOut className="text-3xl ml-2 mt-4 text-red-500 hover:text-red-800"/>
-      <p className="text-xl absolute top-4 left-10 text-red-500 hover:text-red-800">Logout</p>
+        <IoLogOut className="text-3xl ml-2 mt-4 text-red-500 hover:text-red-800" />
+        <p className="text-xl absolute top-4 left-10 text-red-500 hover:text-red-800">
+          Logout
+        </p>
       </button>
-   
     </SidebarContainer>
   );
 };
